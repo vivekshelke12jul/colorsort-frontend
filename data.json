@@ -1,0 +1,104 @@
+{
+    "input1":{
+        "bottleCount":9,
+        "bottleCapacity": 4,
+        "matrix":[
+            ["red", "orange", "green", "yellow"],
+            ["blue", "purple", "blue", "white"],
+            ["red", "red", "orange", "yellow"],
+            ["red", "green", "purple", "yellow"],
+            ["purple", "orange", "white", "green"],
+            ["orange", "green", "yellow", "white"],
+            ["white", "purple", "blue", "blue"],
+            [],
+            []
+        ]
+    },
+
+    "input2":{
+        "bottleCount":9,
+        "bottleCapacity": 4,
+        "matrix":[
+            ["yellow", "green", "orange", "red"],
+            ["white", "blue", "purple", "blue"],
+            ["yellow", "orange", "red", "red"],
+            ["yellow", "purple", "green", "red"],
+            ["green", "white", "orange", "purple"],
+            ["white", "yellow", "green", "orange"],
+            ["blue", "blue", "purple", "white"],
+            [],
+            []
+        ]
+    },
+
+    "solutionActions": [
+        {
+            "pickBottle": 1,
+            "putBottle": 5
+        },
+        {
+            "pickBottle": 1,
+            "putBottle": 6
+        },
+        {
+            "pickBottle": 1,
+            "putBottle": 5
+        },
+        {
+            "pickBottle": 2,
+            "putBottle": 1
+        },
+        {
+            "pickBottle": 2,
+            "putBottle": 5
+        },
+        {
+            "pickBottle": 2,
+            "putBottle": 5
+        },
+        {
+            "pickBottle": 0,
+            "putBottle": 2
+        },
+        {
+            "pickBottle": 0,
+            "putBottle": 1
+        },
+        {
+            "pickBottle": 4,
+            "putBottle": 1
+        },
+        {
+            "pickBottle": 3,
+            "putBottle": 4
+        },
+        {
+            "pickBottle": 3,
+            "putBottle": 0
+        },
+        {
+            "pickBottle": 3,
+            "putBottle": 2
+        },
+        {
+            "pickBottle": 4,
+            "putBottle": 3
+        },
+        {
+            "pickBottle": 4,
+            "putBottle": 3
+        },
+        {
+            "pickBottle": 4,
+            "putBottle": 2
+        },
+        {
+            "pickBottle": 4,
+            "putBottle": 3
+        },
+        {
+            "pickBottle": 6,
+            "putBottle": 0
+        }
+    ]
+}
