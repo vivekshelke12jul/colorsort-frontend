@@ -8,20 +8,31 @@
 </head>
 <body>
     <div class="container">
-        <div class="bottle">
-            <div class="stack">
-                <!-- Elements will be added here dynamically -->
-            </div>
-        </div>
-        <button onclick="popElement()">Pop Top Element</button>
-        <div class="inhand-container">
-            <h3>In Hand</h3>
-            <div class="inhand">
-                <!-- Popped element will be moved here -->
-            </div>
-        </div>
-    </div>
+       <div class="output">
 
+       </div>
+       <div class="form">
+           <div class="input">
+               <label for="bottleCount">Bottles</label>
+               <input type="number" name="bottleCount" id="bottleCount" required min="3">
+                <br>
+               <label for="bottleCapacity">Capacity</label>
+               <input type="number" name="bottleCapacity" id="bottleCapacity" required min="1">
+               
+               <button type="submit" onclick="createBottles()">create</button>
+               <button type="submit" onclick="solve()">solve</button>
+           </div>
+
+           <div class="colorBox">
+            
+           </div>
+           <div class="copiedColorBox"> 
+           </div>
+           <div class="popBox">
+
+           </div>
+       </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
