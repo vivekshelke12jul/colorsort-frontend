@@ -56,7 +56,7 @@ body {
     height: 21%;
     width: 90%;
     border: 1px solid black;
-    background: red;
+    /* background: red; */
 }
 
 .form{

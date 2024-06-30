@@ -1,21 +1,41 @@
+// const colors = [
+//     "#FF0000", // Red
+//     "#0000FF", // Blue
+//     "#FFFF00", // Yellow
+//     "#00FF00", // Green
+//     "#FFA500", // Orange
+//     "#800080", // Purple
+//     "#4B0082", // Indigo
+//     "#EE82EE", // Violet
+//     "#A52A2A", // Brown
+//     "#FFFFFF", // White
+//     "#00008B", // Dark Blue
+//     "#ADD8E6", // Light Blue
+//     "#006400", // Dark Green
+//     "#90EE90",  // Light Green
+//     "#90EE90",  // Light Green
+//     "#90EE90"  // Light Green
+// ];
+
 const colors = [
-    "#FF0000", // Red
-    "#0000FF", // Blue
-    "#FFFF00", // Yellow
-    "#00FF00", // Green
-    "#FFA500", // Orange
-    "#800080", // Purple
-    "#4B0082", // Indigo
-    "#EE82EE", // Violet
-    "#A52A2A", // Brown
-    "#FFFFFF", // White
-    "#00008B", // Dark Blue
-    "#ADD8E6", // Light Blue
-    "#006400", // Dark Green
-    "#90EE90",  // Light Green
-    "#90EE90",  // Light Green
-    "#90EE90"  // Light Green
+    'red',
+    'blue',
+    'yellow',
+    'green',
+    'orange',
+    'purple',
+    'indigo',
+    'violet',
+    'brown',
+    'white',
+    'darkblue',
+    'lightblue',
+    'darkgreen',
+    'lightgreen',
+    'lightgreen',
+    'lightgreen'
 ];
+
 
 // let bottleList = []
 let copiedColor = colors[0]
@@ -45,9 +65,7 @@ function handleBottleClick(){
             bottle = event.target.parentElement
         }
 
-        console.log(bottle)
         let lastChild = bottle.firstElementChild
-        console.log(lastChild)
         bottle.removeChild(bottle.firstElementChild)
     }else{
         return
@@ -67,7 +85,6 @@ function createBottle(bottleCapacity){
         bottle.appendChild(element)
     }
     bottle.addEventListener('click', handleBottleClick)
-    console.log(bottle)
     return bottle;
 }
 
@@ -75,7 +92,7 @@ function createBottles(){
     let bottleCount = document.getElementById('bottleCount').value;
     let bottleCapacity = document.getElementById('bottleCapacity').value;
 
-    console.log(bottleCount, bottleCapacity)
+    // console.log(bottleCount, bottleCapacity)
     let output = document.querySelector('.output')
     output.innerHTML = ''
 
@@ -121,11 +138,63 @@ function initializeColorBox(){
     popBox.addEventListener('click', handlePopBoxClick)
 }
 
-// function solve(){
-//     let gameState = {
-//         bottleCount: do
-//     }
-// }
+function extractJson() {
+
+    let mat = []
+
+    const outputContainer = document.querySelector('.output');
+
+    Array.from(outputContainer.children).forEach((bottle, index) => {
+        console.log(bottle)
+        let inner = []
+        Array.from(bottle.children).forEach((element, index) => {
+            inner.push(element.style.backgroundColor)
+        })
+        inner.reverse()
+        mat.push(inner)
+    })
+    // console.log(mat)
+    return mat;
+}
+
+
+async function makeRequestToServer(matrix) {
+    const stateObject = {
+        bottleCount: document.getElementById('bottleCount').value,
+        bottleCapacity: document.getElementById('bottleCapacity').value,
+        matrix: matrix
+    };
+
+    const jsonString = JSON.stringify(stateObject);
+    try {
+        // Create the POST request to the /get-solution endpoint
+        const response = await fetch('http://localhost:8080/get-solution', {
+          method: 'POST', // Use POST method to send data in the request body
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: jsonString // Attach the JSON string as the request body
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Network response was not ok, status: ${response.status}`);
+        }
+    
+        const data = await response.json(); // Assuming the server returns a JSON response
+        return data;
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+}
+
+async function solve() {
+    let matrix = extractJson();
+    const data = await makeRequestToServer(matrix);
+
+    // let str = JSON.stringify(data);
+    // console.log(str)
+    console.log(data)
+}
 
 
 window.onload = initializeColorBox()
